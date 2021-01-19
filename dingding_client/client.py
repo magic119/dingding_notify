@@ -25,8 +25,7 @@ def send_message(client, to_users):
         try:
             status, response = client.post(item, to_users)
             if status != "ok":
-                raise response
-            time.sleep(10)
+                logger.error(response)
         except Exception as e:
             logger.error(e)
 
@@ -50,11 +49,6 @@ class Work(MQConsume):
         self._from_queue(queue_name)
 
 
-class Publish(MQPublish):
-    def main(self, ex, key, data, count=3):
-        self._to_queue(ex, key, data, count)
-
-
 class SendMessageToDingDing(object):
     """发送消息到钉钉"""
     def __init__(self, app_key, app_secret, api_url, username="guest", password="guest", host="127.0.0.1", port=5672,
@@ -74,12 +68,12 @@ class SendMessageToDingDing(object):
         self.gevent_list = []
 
     def trans(self, to_users, client):
-        """启动多个协程，发送消息"""
+        """启动协程，发送消息到钉钉"""
         g = gevent.spawn(send_message, client, to_users)
         self.gevent_list.append(g)
 
     def consume(self, queues):
-        """启动多线程，消耗mq队列里面的消息"""
+        """启动多个协程，消耗mq队列里面的消息"""
         for queue in queues:
             work = Work(username=self.username, password=self.password, host=self.host, port=self.port,
                         virtual_host=self.virtual_host, connection_attempts=self.connection_attempts,

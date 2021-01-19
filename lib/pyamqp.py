@@ -111,16 +111,15 @@ class MQConsume(MQConnection):
 
 class MQPublish(MQConnection):
     def _to_queue(self, ex, key, data, count, serializer=None):
-        if count <= 0:
-            return False
         try:
             self.produce(exchange=ex, routing_key=key, data=data, serializer=serializer)
             return True
         except Exception as e:
+            if count <= 0:
+                raise e
             time.sleep(1)
             self.reconnect()
             self._to_queue(ex, key, data, count=count-1)
-            raise e
 
 
 if __name__ == '__main__':
