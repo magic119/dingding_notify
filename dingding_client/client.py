@@ -26,6 +26,7 @@ def send_message(client, to_users):
             status, response = client.post(item, to_users)
             if status != "ok":
                 logger.error(response)
+            time.sleep(10)
         except Exception as e:
             logger.error(e)
 
