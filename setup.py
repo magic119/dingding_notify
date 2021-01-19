@@ -7,7 +7,7 @@ requires = ["aniso8601==8.1.0", "certifi==2020.12.5", "chardet==3.0.4", "click==
             "six==1.15.0", "tzlocal==2.1", "urllib3==1.26.2", "zope.event==4.5.0", "zope.interface==5.2.0"]  # 需要安装的第三方依赖
 
 setup(
-    name="Shopex_dingding_notify",
+    name="shopex-dingding-notify",
     version=1.0,
     description="ShopEx dingding notify for python",
     long_description=open("README.md").read(),
