@@ -8,7 +8,7 @@ requires = ["aniso8601==8.1.0", "certifi==2020.12.5", "chardet==3.0.4", "click==
 
 setup(
     name="shopex-dingding-notify",
-    version=1.0,
+    version=2.0,
     description="ShopEx dingding notify for python",
     long_description=open("README.md").read(),
     packages=find_packages(),
