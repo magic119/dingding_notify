@@ -6,7 +6,7 @@ import json
 import time
 
 from lib.log import *
-from conf.config import MAXSIZE, RETRY_COUNT
+from conf.config import MAXSIZE, RETRY_COUNT, TIME_STEP
 from lib.notice_client import NoticeClient
 from lib.pyamqp import MQConsume, MQPublish
 logger = logging.getLogger("dingding_notify")
@@ -26,7 +26,7 @@ def send_message(client, to_users):
             status, response = client.post(item, to_users)
             if status != "ok":
                 logger.error(response)
-            time.sleep(10)
+            time.sleep(TIME_STEP)
         except Exception as e:
             logger.error(e)
 
