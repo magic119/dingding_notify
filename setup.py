@@ -8,7 +8,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="shopex-dingding-notify",
-    version=2.1,
+    version=2.2,
     description="ShopEx dingding notify for python",
     long_description=open("README.md").read(),
     packages=find_packages(),

@@ -13,9 +13,9 @@ logger = logging.getLogger("dingding_notify")
 
 def http_request(url, data, headers={'user-agent': 'shopex/spider'}):
     retry_count = RETRY_COUNT
+    data = json.dumps(data)
     while retry_count >= 0:
         try:
-            data = json.dumps(data)
             req = urllib.request.Request(url, data.encode(), headers, method="POST")
             response = json.loads(urllib.request.urlopen(req).read().decode())
             status = response.get("errmsg")
