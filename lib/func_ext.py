@@ -47,7 +47,7 @@ def message_format(data):
     event_main = data.get("main", "")
     event_service = data.get("service", "")
     event_message = data.get("message", "")
-    return f"事件产生事件:{event_time}  事件产生主体:{event_main}  所属服务:{event_service}  事件内容:{event_message}"
+    return f"事件产生时间:{event_time}  事件产生主体:{event_main}  所属服务:{event_service}  事件内容:{event_message}"
 
 
 if __name__ == '__main__':

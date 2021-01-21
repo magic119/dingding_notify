@@ -12,6 +12,7 @@ class NoticeClient(object):
         self.app_secret = app_secret
 
     def sys_params(self, body):
+        time.sleep(1)
         now = int(time.time())
         auth_key = '%d-%s-%s' % (now, self.app_secret, self.app_key)
         auth_key_md5 = get_md5(auth_key)
